@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #0a3d62;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+section {
+    padding: 1rem;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: center;
+}
+td.today {
+    background-color: #dff9fb;
+    font-weight: bold;
+}
+form input, form button {
+    margin: 0.5rem 0.25rem;
+    padding: 0.5rem;
+}
+.session {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+.edit, .delete {
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    cursor: pointer;
+}
+.edit {
+    background-color: #f6e58d;
+}
+.delete {
+    background-color: #ff7979;
+    color: white;
+}
+.timer {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.checklist label, .pledge textarea {
+    display: block;
+    margin: 0.5rem 0;
+}
+.progress-wrapper {
+    width: 100%;
+    background-color: #eee;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #6ab04c;
+    border-radius: 10px;
+}
