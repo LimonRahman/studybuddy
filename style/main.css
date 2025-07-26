@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-/* Top Navigation */
+/* Top Bar Layout */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -16,31 +16,60 @@ body {
   flex-wrap: wrap;
 }
 
-/* Header Text */
-.header-text {
-  text-align: left;
+/* Left: Options + Title */
+.top-left {
+  display: flex;
+  align-items: center;
   flex: 1;
+  gap: 1rem;
+}
+
+.options-btn {
+  background-color: #3c6382;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.options-btn:hover {
+  background-color: #60a3bc;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
 }
 
 .site-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 0;
 }
 
 .tagline {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #dcdde1;
 }
 
-/* Section Navigation Buttons inside Top Bar */
-.section-buttons {
+/* Center: Navigation Buttons */
+.top-center {
+  flex: 2;
   display: flex;
-  gap: 0.5rem;
+  justify-content: center;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.section-buttons button {
+.nav-buttons button {
   background-color: #74b9ff;
   border: none;
   padding: 0.5rem 1rem;
@@ -51,11 +80,34 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.section-buttons button:hover {
+.nav-buttons button:hover {
   background-color: #0984e3;
 }
 
-/* Sections */
+/* Right: Notification + Profile */
+.top-right {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.notify-btn, .profile-btn {
+  background-color: #3c6382;
+  color: white;
+  border: none;
+  padding: 0.45rem 0.9rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.notify-btn:hover, .profile-btn:hover {
+  background-color: #60a3bc;
+}
+
+/* Section Styling */
 section {
   padding: 1rem;
 }
