@@ -8,39 +8,42 @@
 </head>
 <body>
 
-  <!-- Options Button (top-right) -->
-  <div class="options-container">
-    <button class="options-btn">☰ Options</button>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <h1>StudyBuddy</h1>
-    <p>Your Personal Study Planner</p>
-
-    <!-- Section Navigation Buttons -->
+  <!-- Top Navigation Bar with Header Left and Nav Buttons Right -->
+  <div class="top-bar">
+    <div class="header-text">
+      <h1 class="site-title">StudyBuddy</h1>
+      <p class="tagline">Your Personal Study Planner</p>
+    </div>
     <div class="section-buttons">
       <a href="#schedule"><button>Schedule</button></a>
       <a href="#goals"><button>Goals</button></a>
       <a href="#focus"><button>Focus</button></a>
       <a href="feedback.html"><button>Feedback</button></a>
     </div>
-  </header>
+  </div>
 
-  <!-- Main Sections -->
+  <!-- Schedule Section -->
   <section id="schedule">
     <h2>Study Schedule Planner</h2>
     <table>
-      <tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr>
-      <tr><td>8-9AM</td><td class="today"></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>9-10AM</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+      </tr>
+      <tr>
+        <td>8-9AM</td><td class="today"></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>9-10AM</td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
     </table>
+
     <form>
       <input type="text" placeholder="Subject" id="subject" />
       <input type="time" id="time" />
       <input type="color" id="color" />
       <button type="submit">Add Session</button>
     </form>
+
     <div class="session" style="background-color:#f3a683;">
       <span>Math - 9:00AM</span>
       <button class="edit">Edit</button>
@@ -48,6 +51,7 @@
     </div>
   </section>
 
+  <!-- Goals Section -->
   <section id="goals">
     <h2>Study Goals Tracker</h2>
     <ul>
@@ -59,6 +63,7 @@
     </div>
   </section>
 
+  <!-- Focus Mode Section -->
   <section id="focus">
     <h2>Focus Mode Tools</h2>
     <div class="timer">25:00</div>

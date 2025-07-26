@@ -1,74 +1,54 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0;
 }
 
-.top-nav {
-    background-color: #0a3d62;
-    padding: 1rem;
-    text-align: left;
+.feedback-container {
+  max-width: 500px;
+  background-color: white;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.back-btn {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    background-color: #3c6382;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+.feedback-container h2 {
+  text-align: center;
+  color: #0a3d62;
+  margin-bottom: 1.5rem;
 }
 
-.back-btn:hover {
-    background-color: #60a3bc;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-header {
-    text-align: center;
-    padding: 2rem;
-    background-color: #0a3d62;
-    color: white;
+label {
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
 }
 
-#feedback-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+input, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-#feedback-form form {
-    display: flex;
-    flex-direction: column;
+button {
+  margin-top: 1.5rem;
+  background-color: #0a3d62;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#feedback-form label {
-    margin: 0.5rem 0 0.2rem;
-    font-weight: bold;
-}
-
-#feedback-form input,
-#feedback-form textarea {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-.submit-feedback {
-    background-color: #0a3d62;
-    color: white;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.submit-feedback:hover {
-    background-color: #3c6382;
+button:hover {
+  background-color: #3c6382;
 }
