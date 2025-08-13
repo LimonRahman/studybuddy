@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyBuddy - Personal Study Planner</title>
+  <link rel="stylesheet" href="style/main.css" />
+</head>
+<body>
+
+  <!-- Left Drawer Overlay -->
+  <div class="overlay" id="leftOverlay"></div>
+  <!-- Right Drawer Overlay -->
+  <div class="overlay" id="rightOverlay"></div>
+
+  <!-- Left Slide Drawer (Options) -->
+  <aside class="drawer drawer-left" id="leftDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h3>Quick Tools</h3>
+      <button class="close-btn" data-close-left>&times;</button>
+    </div>
+
+    <div class="drawer-section">
+      <h4>Calendar</h4>
+      <div class="calendar">
+        <div class="cal-header">
+          <button class="cal-nav" id="prevMonth" aria-label="Previous Month">&#10094;</button>
+          <div id="calTitle">August 2025</div>
+          <button class="cal-nav" id="nextMonth" aria-label="Next Month">&#10095;</button>
+        </div>
+        <div class="cal-grid" id="calGrid" aria-label="Monthly Calendar"></div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h4>Shortcuts</h4>
+      <a class="drawer-link" href="feedback.html">📩 Feedback</a>
+    </div>
+  </aside>
+
+  <!-- Right Slide Drawer (Settings) -->
+  <aside class="drawer drawer-right" id="rightDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h3>Settings</h3>
+      <button class="close-btn" data-close-right>&times;</button>
+    </div>
+
+    <div class="drawer-section">
+      <h4>Theme</h4>
+      <div class="theme-row">
+        <label><input type="radio" name="theme" value="light" checked> Light</label>
+        <label><input type="radio" name="theme" value="dark"> Dark</label>
+        <label><input type="radio" name="theme" value="custom"> Custom</label>
+      </div>
+      <div class="custom-theme" id="customThemeRow" hidden>
+        <label>Primary <input type="color" id="primaryColor" value="#0a3d62"></label>
+        <label>Accent <input type="color" id="accentColor"  value="#74b9ff"></label>
+        <label>Background <input type="color" id="bgColor" value="#ffffff"></label>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h4>Profile</h4>
+      <div class="profile-row">
+        <img id="avatarPreview" class="avatar" src="" alt="Avatar preview" hidden>
+        <div class="profile-fields">
+          <label>
+            Name
+            <input type="text" id="profileName" placeholder="Your name">
+          </label>
+          <label class="file-label">
+            Avatar
+            <input type="file" id="avatarInput" accept="image/*">
+          </label>
+          <button class="btn small" id="saveProfile">Save Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h4>Features</h4>
+      <label class="switch-row">
+        <input type="checkbox" id="toggleFocus" checked>
+        <span>Enable Focus Mode</span>
+      </label>
+      <label class="switch-row">
+        <input type="checkbox" id="toggleGoals" checked>
+        <span>Enable Goals Tracker</span>
+      </label>
+      <label class="switch-row">
+        <input type="checkbox" id="toggleSchedule" checked>
+        <span>Enable Schedule Planner</span>
+      </label>
+    </div>
+  </aside>
+
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <!-- Left: Options + Title -->
+    <div class="top-left">
+      <button class="options-btn" id="openLeft">☰</button>
+      <div class="header-text">
+        <h1 class="site-title">StudyBuddy</h1>
+        <p class="tagline">Personal Study Planner</p>
+      </div>
+    </div>
+
+    <!-- Center: Navigation Buttons -->
+    <div class="top-center">
+      <div class="nav-buttons">
+        <a href="#schedule"><button>Schedule</button></a>
+        <a href="#goals"><button>Goals</button></a>
+        <a href="#focus"><button>Focus</button></a>
+        
+      </div>
+    </div>
+
+    <!-- Right: Notification and Settings -->
+    <div class="top-right">
+      <button class="notify-btn" title="Notifications">🔔</button>
+      <button class="settings-btn" id="openRight" title="Settings">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Schedule Section -->
+  <section id="schedule" data-feature="schedule">
+    <h2>Study Schedule Planner</h2>
+    <table>
+      <tr>
+        <th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
+      </tr>
+      <tr>
+        <td>8-9AM</td><td class="today"></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td>9-10AM</td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+    </table>
+
+    <form id="sessionForm">
+      <input type="text" placeholder="Subject" id="subject" />
+      <input type="time" id="time" />
+      <input type="color" id="color" />
+      <button type="submit">Add Session</button>
+    </form>
+
+    <div class="session" style="background-color:#f3a683;">
+      <span>Math - 9:00AM</span>
+      <button class="edit">Edit</button>
+      <button class="delete">Delete</button>
+    </div>
+  </section>
+
+  <!-- Goals Section -->
+  <section id="goals" data-feature="goals">
+    <h2>Study Goals Tracker</h2>
+    <ul>
+      <li><label><input type="checkbox" /> Complete ENV 206 Notes</label></li>
+      <li><label><input type="checkbox" /> Practice LALR(1) Parsing</label></li>
+    </ul>
+    <div class="progress-wrapper">
+      <div class="progress-bar" style="width: 40%;"></div>
+    </div>
+  </section>
+
+  <!-- Focus Mode Section -->
+  <section id="focus" data-feature="focus">
+    <h2>Focus Mode Tools</h2>
+    <div class="timer">25:00</div>
+    <div class="checklist">
+      <label><input type="checkbox" /> Phone on silent</label>
+      <label><input type="checkbox" /> No social media</label>
+    </div>
+    <div class="pledge">
+      <textarea placeholder="Type your study pledge..."></textarea>
+    </div>
+  </section>
+
+  <script>
+    // --- Drawer controls ---
+    const leftDrawer = document.getElementById('leftDrawer');
+    const rightDrawer = document.getElementById('rightDrawer');
+    const leftOverlay = document.getElementById('leftOverlay');
+    const rightOverlay = document.getElementById('rightOverlay');
+
+    const openLeft = document.getElementById('openLeft');
+    const openRight = document.getElementById('openRight');
+
+    const closeLeftBtns = document.querySelectorAll('[data-close-left]');
+    const closeRightBtns = document.querySelectorAll('[data-close-right]');
+
+    function openDrawer(drawer, overlay) {
+      drawer.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('show');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeDrawer(drawer, overlay) {
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.classList.remove('show');
+      document.body.classList.remove('no-scroll');
+    }
+
+    openLeft.addEventListener('click', () => openDrawer(leftDrawer, leftOverlay));
+    openRight.addEventListener('click', () => openDrawer(rightDrawer, rightOverlay));
+    closeLeftBtns.forEach(btn => btn.addEventListener('click', () => closeDrawer(leftDrawer, leftOverlay)));
+    closeRightBtns.forEach(btn => btn.addEventListener('click', () => closeDrawer(rightDrawer, rightOverlay)));
+    leftOverlay.addEventListener('click', () => closeDrawer(leftDrawer, leftOverlay));
+    rightOverlay.addEventListener('click', () => closeDrawer(rightDrawer, rightOverlay));
+
+    // --- Theme handling ---
+    const themeRadios = document.querySelectorAll('input[name="theme"]');
+    const customRow = document.getElementById('customThemeRow');
+    const primaryColor = document.getElementById('primaryColor');
+    const accentColor = document.getElementById('accentColor');
+    const bgColor = document.getElementById('bgColor');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'custom') {
+        customRow.hidden = false;
+        document.documentElement.style.setProperty('--color-primary', primaryColor.value);
+        document.documentElement.style.setProperty('--color-accent', accentColor.value);
+        document.documentElement.style.setProperty('--color-bg', bgColor.value);
+      } else {
+        customRow.hidden = true;
+        // reset inline custom overrides
+        document.documentElement.style.removeProperty('--color-primary');
+        document.documentElement.style.removeProperty('--color-accent');
+        document.documentElement.style.removeProperty('--color-bg');
+      }
+      localStorage.setItem('sb-theme', theme);
+      if (theme === 'custom') {
+        localStorage.setItem('sb-custom', JSON.stringify({
+          primary: primaryColor.value,
+          accent: accentColor.value,
+          bg: bgColor.value
+        }));
+      }
+    }
+
+    themeRadios.forEach(r => {
+      r.addEventListener('change', () => applyTheme(r.value));
+    });
+    [primaryColor, accentColor, bgColor].forEach(p => {
+      p.addEventListener('input', () => {
+        if (document.documentElement.getAttribute('data-theme') === 'custom') {
+          document.documentElement.style.setProperty('--color-primary', primaryColor.value);
+          document.documentElement.style.setProperty('--color-accent', accentColor.value);
+          document.documentElement.style.setProperty('--color-bg', bgColor.value);
+          localStorage.setItem('sb-custom', JSON.stringify({
+            primary: primaryColor.value,
+            accent: accentColor.value,
+            bg: bgColor.value
+          }));
+        }
+      });
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('sb-theme') || 'light';
+    document.querySelector(`input[name="theme"][value="${savedTheme}"]`)?.click();
+    if (savedTheme === 'custom') {
+      try {
+        const c = JSON.parse(localStorage.getItem('sb-custom') || '{}');
+        if (c.primary) primaryColor.value = c.primary;
+        if (c.accent) accentColor.value = c.accent;
+        if (c.bg) bgColor.value = c.bg;
+        applyTheme('custom');
+      } catch {}
+    }
+
+    // --- Profile handling ---
+    const profileName = document.getElementById('profileName');
+    const avatarInput = document.getElementById('avatarInput');
+    const avatarPreview = document.getElementById('avatarPreview');
+    const saveProfile = document.getElementById('saveProfile');
+
+    // Load saved
+    const savedProfile = JSON.parse(localStorage.getItem('sb-profile') || '{}');
+    if (savedProfile.name) profileName.value = savedProfile.name;
+    if (savedProfile.avatar) {
+      avatarPreview.src = savedProfile.avatar;
+      avatarPreview.hidden = false;
+    }
+
+    avatarInput.addEventListener('change', () => {
+      const file = avatarInput.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        avatarPreview.src = e.target.result;
+        avatarPreview.hidden = false;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    saveProfile.addEventListener('click', () => {
+      const data = {
+        name: profileName.value.trim(),
+        avatar: avatarPreview.hidden ? '' : avatarPreview.src
+      };
+      localStorage.setItem('sb-profile', JSON.stringify(data));
+      alert('Profile saved!');
+    });
+
+    // --- Feature toggles ---
+    const featureMap = {
+      toggleFocus: 'focus',
+      toggleGoals: 'goals',
+      toggleSchedule: 'schedule'
+    };
+
+    Object.keys(featureMap).forEach(id => {
+      const checkbox = document.getElementById(id);
+      const section = document.querySelector(`section[data-feature="${featureMap[id]}"]`);
+      // Load
+      const saved = localStorage.getItem('sb-' + id);
+      if (saved !== null) {
+        checkbox.checked = saved === 'true';
+      }
+      section.style.display = checkbox.checked ? '' : 'none';
+      checkbox.addEventListener('change', () => {
+        section.style.display = checkbox.checked ? '' : 'none';
+        localStorage.setItem('sb-' + id, String(checkbox.checked));
+      });
+    });
+
+    // --- Minimal calendar (no external libs) ---
+    const calGrid = document.getElementById('calGrid');
+    const calTitle = document.getElementById('calTitle');
+    const prevMonth = document.getElementById('prevMonth');
+    const nextMonth = document.getElementById('nextMonth');
+
+    let shown = new Date();
+    shown.setDate(1);
+
+    function buildCalendar(date) {
+      calGrid.innerHTML = '';
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+      calTitle.textContent = date.toLocaleString(undefined, { month: 'long', year: 'numeric' });
+
+      // Weekday headers
+      names.forEach(n => {
+        const h = document.createElement('div');
+        h.className = 'cal-cell cal-head';
+        h.textContent = n;
+        calGrid.appendChild(h);
+      });
+
+      // Padding before 1st
+      for (let i = 0; i < firstDay; i++) {
+        const pad = document.createElement('div');
+        pad.className = 'cal-cell cal-pad';
+        calGrid.appendChild(pad);
+      }
+
+      const today = new Date();
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        cell.textContent = d;
+        if (
+          d === today.getDate() &&
+          month === today.getMonth() &&
+          year === today.getFullYear()
+        ) {
+          cell.classList.add('cal-today');
+        }
+        calGrid.appendChild(cell);
+      }
+    }
+
+    prevMonth.addEventListener('click', () => {
+      shown.setMonth(shown.getMonth() - 1);
+      buildCalendar(shown);
+    });
+    nextMonth.addEventListener('click', () => {
+      shown.setMonth(shown.getMonth() + 1);
+      buildCalendar(shown);
+    });
+
+    buildCalendar(shown);
+  </script>
+</body>
+</html>
