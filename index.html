@@ -59,22 +59,10 @@
       </div>
     </div>
 
+    <!-- PROFILE BUTTON -->
     <div class="drawer-section">
       <h4>Profile</h4>
-      <div class="profile-row">
-        <img id="avatarPreview" class="avatar" src="" alt="Avatar preview" hidden>
-        <div class="profile-fields">
-          <label>
-            Name
-            <input type="text" id="profileName" placeholder="Your name">
-          </label>
-          <label class="file-label">
-            Avatar
-            <input type="file" id="avatarInput" accept="image/*">
-          </label>
-          <button class="btn small" id="saveProfile">Save Profile</button>
-        </div>
-      </div>
+      <button class="btn small" id="editProfileBtn">Edit Profile</button>
     </div>
 
     <div class="drawer-section">
@@ -96,7 +84,6 @@
 
   <!-- Top Navigation Bar -->
   <div class="top-bar">
-    <!-- Left: Options + Title -->
     <div class="top-left">
       <button class="options-btn" id="openLeft">☰</button>
       <div class="header-text">
@@ -105,17 +92,14 @@
       </div>
     </div>
 
-    <!-- Center: Navigation Buttons -->
     <div class="top-center">
       <div class="nav-buttons">
         <a href="#schedule"><button>Schedule</button></a>
         <a href="#goals"><button>Goals</button></a>
         <a href="#focus"><button>Focus</button></a>
-        
       </div>
     </div>
 
-    <!-- Right: Notification and Settings -->
     <div class="top-right">
       <button class="notify-btn" title="Notifications">🔔</button>
       <button class="settings-btn" id="openRight" title="Settings">⚙️</button>
@@ -224,7 +208,6 @@
         document.documentElement.style.setProperty('--color-bg', bgColor.value);
       } else {
         customRow.hidden = true;
-        // reset inline custom overrides
         document.documentElement.style.removeProperty('--color-primary');
         document.documentElement.style.removeProperty('--color-accent');
         document.documentElement.style.removeProperty('--color-bg');
@@ -270,40 +253,6 @@
       } catch {}
     }
 
-    // --- Profile handling ---
-    const profileName = document.getElementById('profileName');
-    const avatarInput = document.getElementById('avatarInput');
-    const avatarPreview = document.getElementById('avatarPreview');
-    const saveProfile = document.getElementById('saveProfile');
-
-    // Load saved
-    const savedProfile = JSON.parse(localStorage.getItem('sb-profile') || '{}');
-    if (savedProfile.name) profileName.value = savedProfile.name;
-    if (savedProfile.avatar) {
-      avatarPreview.src = savedProfile.avatar;
-      avatarPreview.hidden = false;
-    }
-
-    avatarInput.addEventListener('change', () => {
-      const file = avatarInput.files?.[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        avatarPreview.src = e.target.result;
-        avatarPreview.hidden = false;
-      };
-      reader.readAsDataURL(file);
-    });
-
-    saveProfile.addEventListener('click', () => {
-      const data = {
-        name: profileName.value.trim(),
-        avatar: avatarPreview.hidden ? '' : avatarPreview.src
-      };
-      localStorage.setItem('sb-profile', JSON.stringify(data));
-      alert('Profile saved!');
-    });
-
     // --- Feature toggles ---
     const featureMap = {
       toggleFocus: 'focus',
@@ -314,11 +263,8 @@
     Object.keys(featureMap).forEach(id => {
       const checkbox = document.getElementById(id);
       const section = document.querySelector(`section[data-feature="${featureMap[id]}"]`);
-      // Load
       const saved = localStorage.getItem('sb-' + id);
-      if (saved !== null) {
-        checkbox.checked = saved === 'true';
-      }
+      if (saved !== null) checkbox.checked = saved === 'true';
       section.style.display = checkbox.checked ? '' : 'none';
       checkbox.addEventListener('change', () => {
         section.style.display = checkbox.checked ? '' : 'none';
@@ -326,7 +272,7 @@
       });
     });
 
-    // --- Minimal calendar (no external libs) ---
+    // --- Minimal calendar ---
     const calGrid = document.getElementById('calGrid');
     const calTitle = document.getElementById('calTitle');
     const prevMonth = document.getElementById('prevMonth');
@@ -339,13 +285,11 @@
       calGrid.innerHTML = '';
       const year = date.getFullYear();
       const month = date.getMonth();
-      const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+      const firstDay = new Date(year, month, 1).getDay();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
       calTitle.textContent = date.toLocaleString(undefined, { month: 'long', year: 'numeric' });
 
-      // Weekday headers
       names.forEach(n => {
         const h = document.createElement('div');
         h.className = 'cal-cell cal-head';
@@ -353,7 +297,6 @@
         calGrid.appendChild(h);
       });
 
-      // Padding before 1st
       for (let i = 0; i < firstDay; i++) {
         const pad = document.createElement('div');
         pad.className = 'cal-cell cal-pad';
@@ -365,11 +308,7 @@
         const cell = document.createElement('div');
         cell.className = 'cal-cell';
         cell.textContent = d;
-        if (
-          d === today.getDate() &&
-          month === today.getMonth() &&
-          year === today.getFullYear()
-        ) {
+        if (d === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
           cell.classList.add('cal-today');
         }
         calGrid.appendChild(cell);
@@ -386,6 +325,12 @@
     });
 
     buildCalendar(shown);
+
+    // --- EDIT PROFILE BUTTON ---
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    editProfileBtn.addEventListener('click', () => {
+      window.location.href = 'profile.html'; // Replace with your actual profile page
+    });
   </script>
 </body>
 </html>
