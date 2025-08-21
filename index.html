@@ -3,104 +3,33 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>StudyBuddy • Dashboard</title>
+	<title>StudyBuddy • Login</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script>
-		tailwind.config = {
-			darkMode: 'class',
-			theme: {
-				extend: {
-					fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-					colors: {
-						primary: {
-							DEFAULT: '#6366F1',
-							50: '#EEF2FF',
-							100: '#E0E7FF',
-							200: '#C7D2FE',
-							300: '#A5B4FC',
-							400: '#818CF8',
-							500: '#6366F1',
-							600: '#4F46E5',
-							700: '#4338CA',
-							800: '#3730A3',
-							900: '#312E81'
-						}
-					}
-				}
-			}
-		}
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
 	</script>
 	<link rel="stylesheet" href="style/style.css" />
 </head>
-<body data-page="dashboard" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
-	<noscript>
-		<div class="bg-red-100 text-red-800 p-4 text-center">This app requires JavaScript enabled.</div>
-	</noscript>
-	<header id="navbar"></header>
-	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6 animate-fadeInUp">
-		<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-			<div class="col-span-2 bg-white/70 dark:bg-gray-800/60 backdrop-blur rounded-2xl shadow-sm border border-gray-200/70 dark:border-gray-700 p-6">
-				<div class="flex items-center justify-between mb-4">
-					<h2 class="text-xl font-semibold">Today's Schedule</h2>
-					<a href="schedule.html" class="text-primary-600 hover:text-primary-500 transition">View full</a>
-				</div>
-				<ul id="todaySchedule" class="space-y-3"></ul>
+<body data-page="login" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<main class="min-h-[80vh] grid place-items-center px-4 animate-fadeInUp">
+		<div class="w-full max-w-md">
+			<div class="mb-6 text-center">
+				<div class="w-14 h-14 mx-auto rounded-2xl bg-primary-500 text-white grid place-items-center text-2xl font-bold shadow-lg">SB</div>
+				<h1 class="mt-3 text-2xl font-semibold">Welcome to StudyBuddy</h1>
+				<p class="text-gray-500">Plan smarter. Study better.</p>
 			</div>
-			<div class="bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/20 dark:to-gray-800 rounded-2xl shadow-sm border border-gray-200/70 dark:border-gray-700 p-6">
-				<h2 class="text-xl font-semibold mb-4">Weekly Goal Progress</h2>
-				<div class="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-					<div id="weeklyProgressBar" class="h-full bg-primary-500 rounded-full transition-all duration-700" style="width: 0%"></div>
-				</div>
-				<p id="weeklyProgressText" class="mt-2 text-sm text-gray-600 dark:text-gray-300">0% complete</p>
-			</div>
-		</section>
-
-		<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-			<div class="bg-white/70 dark:bg-gray-800/60 rounded-2xl shadow-sm border border-gray-200/70 dark:border-gray-700 p-6">
-				<div class="flex items-center justify-between mb-4">
-					<h2 class="text-xl font-semibold">Pinned Tasks</h2>
-					<div class="flex items-center space-x-2">
-						<input id="newPinnedTask" type="text" placeholder="New task..." class="input" />
-						<button id="addPinnedTask" class="btn-primary">Add</button>
-					</div>
-				</div>
-				<ul id="pinnedTasks" class="space-y-3"></ul>
-			</div>
-
-			<div class="bg-white/70 dark:bg-gray-800/60 rounded-2xl shadow-sm border border-gray-200/70 dark:border-gray-700 p-6">
-				<h2 class="text-xl font-semibold mb-4">Quick Stats</h2>
-				<div class="grid grid-cols-2 gap-4">
-					<div class="stat-card">
-						<p class="text-sm text-gray-500 dark:text-gray-400">Sessions this week</p>
-						<p id="statSessions" class="text-2xl font-bold">0</p>
-					</div>
-					<div class="stat-card">
-						<p class="text-sm text-gray-500 dark:text-gray-400">Goals active</p>
-						<p id="statGoals" class="text-2xl font-bold">0</p>
-					</div>
-					<div class="stat-card">
-						<p class="text-sm text-gray-500 dark:text-gray-400">Pomodoro cycles</p>
-						<p id="statPomodoro" class="text-2xl font-bold">0</p>
-					</div>
-					<div class="stat-card">
-						<p class="text-sm text-gray-500 dark:text-gray-400">Flashcards</p>
-						<p id="statFlashcards" class="text-2xl font-bold">0</p>
-					</div>
-				</div>
-			</div>
-			<div class="bg-gradient-to-br from-white to-primary-50 dark:from-gray-800 dark:to-primary-900/20 rounded-2xl shadow-sm border border-gray-200/70 dark:border-gray-700 p-6">
-				<h2 class="text-xl font-semibold mb-2">Motivation</h2>
-				<p class="text-gray-600 dark:text-gray-300">Small steps daily lead to big results. Keep going!</p>
-				<div class="mt-4 flex items-center space-x-3">
-					<a href="focus.html" class="btn-primary">Start Focus Session</a>
-					<a href="goals.html" class="btn-secondary">Update Goals</a>
-				</div>
-			</div>
-		</section>
+			<form id="loginForm" class="bg-white/80 dark:bg-gray-800/70 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6 space-y-4 backdrop-blur hover-lift">
+				<input class="input" name="email" type="email" placeholder="Email address" />
+				<input class="input" name="password" type="password" placeholder="Password" />
+				<button class="btn-primary w-full" type="submit">Login</button>
+				<p class="text-xs text-gray-500 text-center">By continuing you agree to our terms.</p>
+			</form>
+		</div>
 	</main>
 	<script src="js/app.js"></script>
 </body>
 </html>
+

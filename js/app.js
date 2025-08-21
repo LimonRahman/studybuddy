@@ -14,8 +14,8 @@
 	// Auth
 	const AUTH_KEY = 'sb-auth';
 	function isAuthed(){ return !!storage.get(AUTH_KEY, null); }
-	function requireAuth(){ const page = document.body.getAttribute('data-page'); if (page !== 'login' && !isAuthed()) { window.location.href = 'login.html'; } }
-	function doLogout(){ storage.set(AUTH_KEY, null); window.location.href = 'login.html'; }
+	function requireAuth(){ const page = document.body.getAttribute('data-page'); if (page !== 'login' && !isAuthed()) { window.location.href = 'index.html'; } }
+	function doLogout(){ storage.set(AUTH_KEY, null); window.location.href = 'index.html'; }
 
 	// Feature toggles
 	const DEFAULT_FEATURES = { schedule:true, goals:true, focus:true, review:true, resources:true, flashcards:true, feedback:true };
@@ -25,7 +25,7 @@
 
 	// Navbar
 	const NAV_LINKS = [
-		{ href: 'index.html', key: 'dashboard', label: 'Dashboard' },
+		{ href: 'dashboard.html', key: 'dashboard', label: 'Dashboard' },
 		{ href: 'schedule.html', key: 'schedule', label: 'Schedule' },
 		{ href: 'goals.html', key: 'goals', label: 'Goals' },
 		{ href: 'focus.html', key: 'focus', label: 'Focus' },
@@ -38,16 +38,20 @@
 	function renderNavbar(){
 		const container = $('#navbar'); if (!container) return;
 		const page = document.body.getAttribute('data-page');
+		
+		// Don't render navbar on login page
+		if (page === 'login') return;
+		
 		const features = getFeatures();
 		const links = NAV_LINKS.map((l)=>{ const gate = ['dashboard','settings'].includes(l.key) || features[l.key] !== false; if (!gate) return ''; return `<a href="${l.href}" class="px-3 py-2 rounded-xl text-sm font-medium transition-colors ${page===l.key?'bg-primary-500 text-white':'hover:bg-gray-100 dark:hover:bg-gray-700'}">${l.label}</a>`; }).join('');
 		container.innerHTML = `
 			<nav class="backdrop-blur bg-white/70 dark:bg-gray-900/60 border-b border-gray-200/70 dark:border-gray-800 sticky top-0 z-30">
 				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div class="flex items-center justify-between h-16">
-						<a href="index.html" class="flex items-center space-x-2 group">
-							<div class="w-8 h-8 rounded-xl bg-primary-500 text-white grid place-items-center font-bold">SB</div>
-							<span class="font-semibold">StudyBuddy</span>
-						</a>
+								<a href="dashboard.html" class="flex items-center space-x-2 group">
+			<div class="w-8 h-8 rounded-xl bg-primary-500 text-white grid place-items-center font-bold">SB</div>
+			<span class="font-semibold">StudyBuddy</span>
+		</a>
 						<div class="hidden md:flex items-center space-x-1">${links}</div>
 						<div class="flex items-center space-x-3">
 							<label class="switch" title="Toggle dark mode">
@@ -67,7 +71,7 @@
 	}
 
 	// Login
-	function initLogin(){ if (document.body.getAttribute('data-page') !== 'login') return; const form = $('#loginForm'); form?.addEventListener('submit', (e)=>{ e.preventDefault(); const email = form.email.value.trim(); const pass = form.password.value; if (!/.+@.+\..+/.test(email) || pass.length < 4) { alert('Enter a valid email and password (min 4 chars).'); return; } storage.set(AUTH_KEY, { email }); window.location.href = 'index.html'; }); }
+	function initLogin(){ if (document.body.getAttribute('data-page') !== 'login') return; const form = $('#loginForm'); form?.addEventListener('submit', (e)=>{ e.preventDefault(); const email = form.email.value.trim(); const pass = form.password.value; if (!/.+@.+\..+/.test(email) || pass.length < 4) { alert('Enter a valid email and password (min 4 chars).'); return; } storage.set(AUTH_KEY, { email }); window.location.href = 'dashboard.html'; }); }
 
 	// Dashboard
 	function initDashboard() {
