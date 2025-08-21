@@ -1,0 +1,87 @@
+/* StudyBuddy - minimal custom styles (compatible with Tailwind CDN) */
+:root {
+	--sb-primary: #6366f1;
+	--sb-primary-600: #4f46e5;
+	--sb-surface: rgba(255,255,255,0.7);
+	--sb-border: rgba(0,0,0,0.08);
+}
+
+/* Smooth fade-in up animation */
+@keyframes fadeInUp {
+	0% { opacity: 0; transform: translateY(8px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp { animation: fadeInUp 0.6s ease-out both; }
+
+/* Breathing circle animation */
+@keyframes breathe {
+	0%, 100% { transform: scale(1); opacity: 0.8; }
+	50% { transform: scale(1.12); opacity: 1; }
+}
+.breathing {
+	animation: breathe 6s ease-in-out infinite;
+}
+
+/* Simple utility components */
+.input {
+	background: rgba(255,255,255,0.9);
+	border: 1px solid var(--sb-border);
+	border-radius: 0.75rem;
+	padding: 0.625rem 0.875rem;
+	outline: none;
+	width: 100%;
+	transition: box-shadow 150ms, border-color 150ms, background 150ms;
+}
+.input:focus {
+	border-color: var(--sb-primary);
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary {
+	background: var(--sb-primary);
+	color: white;
+	border-radius: 0.75rem;
+	padding: 0.6rem 1rem;
+	font-weight: 600;
+	transition: transform 120ms ease, box-shadow 200ms ease, background 150ms ease;
+	box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+}
+.btn-primary:hover { background: var(--sb-primary-600); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+	background: rgba(99,102,241,0.12);
+	color: #4338ca;
+	border-radius: 0.75rem;
+	padding: 0.55rem 1rem;
+	font-weight: 600;
+	transition: background 150ms ease, transform 120ms ease;
+}
+.btn-secondary:hover { background: rgba(99,102,241,0.18); transform: translateY(-1px); }
+
+.stat-card { background: rgba(255,255,255,0.7); border: 1px solid var(--sb-border); border-radius: 0.75rem; padding: 0.75rem 1rem; }
+
+/* Toggle Switch */
+.switch { position: relative; display: inline-block; width: 48px; height: 28px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e5e7eb; transition: .2s; border-radius: 9999px; border: 1px solid var(--sb-border); }
+.slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 2px; background-color: white; transition: .2s; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+input:checked + .slider { background-color: var(--sb-primary); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Card hover lift */
+.hover-lift { transition: transform 180ms ease, box-shadow 220ms ease; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 35px rgba(0,0,0,0.08); }
+
+/* Flashcard */
+.flashcard { perspective: 1000px; }
+.flashcard-inner { position: relative; width: 100%; height: 180px; transform-style: preserve-3d; transition: transform 0.6s; }
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.flashcard-back { transform: rotateY(180deg); }
+
+/* Hide file input native */
+.file-input { position: relative; overflow: hidden; display: inline-block; }
+.file-input input[type=file] { position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+
+

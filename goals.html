@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>StudyBuddy • Goals</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
+</head>
+<body data-page="goals" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<header id="navbar"></header>
+	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeInUp">
+		<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+			<div class="bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6">
+				<h2 class="text-xl font-semibold mb-4">Add / Edit Goal</h2>
+				<form id="goalForm" class="space-y-4">
+					<input class="input" name="title" placeholder="Goal title (e.g., Finish Chapter 5)" />
+					<div class="grid grid-cols-2 gap-3">
+						<input class="input" name="target" type="number" placeholder="Target units" />
+						<input class="input" name="progress" type="number" placeholder="Progress units" />
+					</div>
+					<button type="submit" class="btn-primary w-full">Add Goal</button>
+				</form>
+			</div>
+			<div class="lg:col-span-2 space-y-4">
+				<h2 class="text-xl font-semibold">Your Goals</h2>
+				<ul id="goalsList" class="space-y-3"></ul>
+			</div>
+		</section>
+	</main>
+	<script src="js/app.js"></script>
+</body>
+</html>
+
+

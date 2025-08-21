@@ -1,118 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StudyBuddy Login</title>
-  <link rel="stylesheet" href="style/login.css" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>StudyBuddy • Login</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
 </head>
-<body>
-  <div class="login-container">
-    <div class="login-card" id="login-card">
-      <h1 class="title">📚 StudyBuddy</h1>
-      <p class="subtitle" id="form-subtitle">Welcome back! Let's plan your success 📆</p>
-
-      <form id="login-form">
-        <input type="text" placeholder="Username" id="login-username" required />
-        <input type="password" placeholder="Password" id="login-password" required />
-        <button type="submit">Login</button>
-        <p class="note">Not registered? <a href="#" id="show-signup">Sign up</a></p>
-      </form>
-
-      <form id="signup-form" style="display:none;">
-        <input type="text" placeholder="Choose Username" id="signup-username" required />
-        <input type="password" placeholder="Choose Password" id="signup-password" required />
-        <button type="submit">Sign Up</button>
-        <p class="note">Already have an account? <a href="#" id="show-login">Login</a></p>
-      </form>
-
-      <p id="error-msg" style="color:red; font-weight:bold;"></p>
-    </div>
-
-    <div class="background-animation">
-      <div class="book"></div>
-      <div class="lamp"></div>
-    </div>
-  </div>
-
-  <script>
-    const loginForm = document.getElementById('login-form');
-    const signupForm = document.getElementById('signup-form');
-    const showSignupLink = document.getElementById('show-signup');
-    const showLoginLink = document.getElementById('show-login');
-    const errorMsg = document.getElementById('error-msg');
-    const formSubtitle = document.getElementById('form-subtitle');
-
-    // Toggle to signup form
-    showSignupLink.addEventListener('click', e => {
-      e.preventDefault();
-      loginForm.style.display = 'none';
-      signupForm.style.display = 'block';
-      errorMsg.textContent = '';
-      formSubtitle.textContent = "Create your StudyBuddy account 📝";
-    });
-
-    // Toggle back to login form
-    showLoginLink.addEventListener('click', e => {
-      e.preventDefault();
-      signupForm.style.display = 'none';
-      loginForm.style.display = 'block';
-      errorMsg.textContent = '';
-      formSubtitle.textContent = "Welcome back! Let's plan your success 📆";
-    });
-
-    // Handle signup
-    signupForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const username = document.getElementById('signup-username').value.trim();
-      const password = document.getElementById('signup-password').value;
-
-      if(localStorage.getItem('user_' + username)) {
-        errorMsg.textContent = "Username already exists. Try another.";
-        return;
-      }
-
-      // Save user credentials in localStorage (for demo only, no security!)
-      localStorage.setItem('user_' + username, password);
-      errorMsg.style.color = 'green';
-      errorMsg.textContent = "Signup successful! Please login.";
-      
-      // Switch back to login form after successful signup
-      setTimeout(() => {
-        signupForm.style.display = 'none';
-        loginForm.style.display = 'block';
-        errorMsg.style.color = 'red';
-        errorMsg.textContent = '';
-        formSubtitle.textContent = "Welcome back! Let's plan your success 📆";
-      }, 2000);
-    });
-
-    // Handle login
-    loginForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value;
-
-      const savedPassword = localStorage.getItem('user_' + username);
-
-      if(savedPassword === null) {
-        errorMsg.textContent = "User not found. Please sign up.";
-        return;
-      }
-
-      if(savedPassword !== password) {
-        errorMsg.textContent = "Incorrect password. Try again.";
-        return;
-      }
-
-      errorMsg.textContent = "";
-
-      // Save logged in user session (demo)
-      localStorage.setItem('loggedInUser', username);
-
-      // Redirect to your main page (change if needed)
-      window.location.href = 'index.html';
-    });
-  </script>
+<body data-page="login" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<main class="min-h-[80vh] grid place-items-center px-4 animate-fadeInUp">
+		<div class="w-full max-w-md">
+			<div class="mb-6 text-center">
+				<div class="w-14 h-14 mx-auto rounded-2xl bg-primary-500 text-white grid place-items-center text-2xl font-bold shadow-lg">SB</div>
+				<h1 class="mt-3 text-2xl font-semibold">Welcome to StudyBuddy</h1>
+				<p class="text-gray-500">Plan smarter. Study better.</p>
+			</div>
+			<form id="loginForm" class="bg-white/80 dark:bg-gray-800/70 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6 space-y-4 backdrop-blur hover-lift">
+				<input class="input" name="email" type="email" placeholder="Email address" />
+				<input class="input" name="password" type="password" placeholder="Password" />
+				<button class="btn-primary w-full" type="submit">Login</button>
+				<p class="text-xs text-gray-500 text-center">By continuing you agree to our terms.</p>
+			</form>
+		</div>
+	</main>
+	<script src="js/app.js"></script>
 </body>
 </html>
+
+

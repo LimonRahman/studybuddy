@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>StudyBuddy • Settings</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
+</head>
+<body data-page="settings" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<header id="navbar"></header>
+	<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeInUp">
+		<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+			<div class="bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6 space-y-6">
+				<h2 class="text-xl font-semibold">Preferences</h2>
+				<div class="flex items-center justify-between">
+					<span>Dark theme</span>
+					<label class="switch">
+						<input id="settingsTheme" type="checkbox" />
+						<span class="slider"></span>
+					</label>
+				</div>
+				<h3 class="font-semibold">Feature access</h3>
+				<div class="space-y-3">
+					<div class="flex items-center justify-between"><span>Schedule</span><label class="switch"><input id="ft-schedule" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Goals</span><label class="switch"><input id="ft-goals" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Focus</span><label class="switch"><input id="ft-focus" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Review</span><label class="switch"><input id="ft-review" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Resources</span><label class="switch"><input id="ft-resources" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Flashcards</span><label class="switch"><input id="ft-flashcards" type="checkbox" /><span class="slider"></span></label></div>
+					<div class="flex items-center justify-between"><span>Feedback</span><label class="switch"><input id="ft-feedback" type="checkbox" /><span class="slider"></span></label></div>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-2">Focus timer</h3>
+					<div class="grid grid-cols-2 gap-3">
+						<div>
+							<label class="text-sm text-gray-500">Work minutes</label>
+							<input class="input" id="workMinutes" type="number" min="1" />
+						</div>
+						<div>
+							<label class="text-sm text-gray-500">Break minutes</label>
+							<input class="input" id="breakMinutes" type="number" min="1" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6">
+				<h2 class="text-xl font-semibold mb-4">Profile</h2>
+				<div class="flex items-start space-x-6">
+					<img id="profilePreview" class="w-24 h-24 rounded-2xl object-cover border border-gray-200 dark:border-gray-700" src="https://api.dicebear.com/7.x/thumbs/svg?seed=StudyBuddy" alt="Profile" />
+					<div class="flex-1">
+						<form id="profileForm" class="space-y-3">
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+								<input class="input" name="firstName" placeholder="First Name" />
+								<input class="input" name="lastName" placeholder="Last Name" />
+							</div>
+							<input class="input" name="email" placeholder="Email" />
+							<input class="input" name="address" placeholder="Address" />
+							<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+								<input class="input" name="city" placeholder="City" />
+								<input class="input" name="state" placeholder="State" />
+								<input class="input" name="contact" placeholder="Contact Number" />
+							</div>
+							<label class="file-input btn-secondary inline-flex items-center">
+								<span>Change profile picture</span>
+								<input id="avatarInput" type="file" accept="image/*" />
+							</label>
+						</form>
+						<div class="mt-6">
+							<h3 class="font-semibold mb-2">Change Password</h3>
+							<form id="changePasswordForm" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+								<input class="input" name="newPassword" type="password" placeholder="New Password" />
+								<input class="input" name="confirmPassword" type="password" placeholder="Confirm Password" />
+								<button class="btn-primary" type="submit">Update</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="mt-4">
+			<div class="bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6 flex items-center justify-between">
+				<span class="text-lg font-semibold">Logout</span>
+				<button id="settingsLogoutBtn" class="btn-primary">Logout</button>
+			</div>
+		</section>
+	</main>
+	<script src="js/app.js"></script>
+</body>
+</html>
+
+

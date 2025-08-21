@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feedback - StudyBuddy</title>
-  <link rel="stylesheet" href="style/feedback.css"/>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>StudyBuddy • Feedback</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
 </head>
-<body>
-  <div class="feedback-container">
-    <h2>We value your feedback!</h2>
-    <form>
-      <label for="email">Email:</label>
-      <input type="email" id="email" required />
-
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" required />
-
-      <label for="country">Country:</label>
-      <input type="text" id="country" required />
-
-      <label for="city">City:</label>
-      <input type="text" id="city" required />
-
-      <label for="message">Your Feedback:</label>
-      <textarea id="message" rows="5" required></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+<body data-page="feedback" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<header id="navbar"></header>
+	<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeInUp">
+		<section class="bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6">
+			<h2 class="text-xl font-semibold mb-4">We value your feedback</h2>
+			<form id="feedbackForm" class="space-y-4">
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+					<input class="input" name="name" placeholder="Your name" />
+					<input class="input" name="email" placeholder="Email address" />
+				</div>
+				<textarea class="input h-36" name="message" placeholder="Your message... (min 10 chars)"></textarea>
+				<button class="btn-primary" type="submit">Send Feedback</button>
+			</form>
+			<div id="feedbackToast" class="hidden mt-4 p-3 rounded-xl bg-green-100 text-green-700">Thanks for your feedback! 🎉</div>
+		</section>
+	</main>
+	<script src="js/app.js"></script>
 </body>
 </html>
+
+

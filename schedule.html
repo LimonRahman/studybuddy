@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>StudyBuddy • Schedule</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] }, colors: { primary: { DEFAULT:'#6366F1',50:'#EEF2FF',100:'#E0E7FF',200:'#C7D2FE',300:'#A5B4FC',400:'#818CF8',500:'#6366F1',600:'#4F46E5',700:'#4338CA',800:'#3730A3',900:'#312E81' } } } } };
+	</script>
+	<link rel="stylesheet" href="style/style.css" />
+</head>
+<body data-page="schedule" class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+	<header id="navbar"></header>
+	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeInUp">
+		<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+			<div class="lg:col-span-1 bg-white/70 dark:bg-gray-800/60 border border-gray-200/70 dark:border-gray-700 rounded-2xl p-6">
+				<h2 class="text-xl font-semibold mb-4">Add / Edit Session</h2>
+				<form id="sessionForm" class="space-y-4">
+					<input class="input" name="title" placeholder="Title (e.g., Calculus)" />
+					<select class="input" name="day">
+						<option>Monday</option>
+						<option>Tuesday</option>
+						<option>Wednesday</option>
+						<option>Thursday</option>
+						<option>Friday</option>
+						<option>Saturday</option>
+						<option>Sunday</option>
+					</select>
+					<div class="grid grid-cols-2 gap-3">
+						<input class="input" type="time" name="start" />
+						<input class="input" type="time" name="end" />
+					</div>
+					<div class="flex items-center justify-between">
+						<label class="text-sm">Color</label>
+						<input class="h-10 w-16 rounded-xl border border-gray-200 dark:border-gray-700" type="color" name="color" value="#6366F1" />
+					</div>
+					<button type="submit" class="btn-primary w-full">Add Session</button>
+				</form>
+			</div>
+			<div class="lg:col-span-2 space-y-4">
+				<h2 class="text-xl font-semibold">Weekly Timetable</h2>
+				<div id="weekColumns" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+			</div>
+		</section>
+	</main>
+	<script src="js/app.js"></script>
+</body>
+</html>
+
+
